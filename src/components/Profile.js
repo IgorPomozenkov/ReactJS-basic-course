@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { TextField, Button } from '@material-ui/core';
-import { changeName, toggleShowName } from "../store/profile/actions"
-import './Profile.css'
-
+import { changeName, toggleShowName } from "../store/profile/actions";
+import './Profile.css';
+import { selectProfile } from '../store/profile/selectors';
 
 export default function Profile() {
-    const [value, setValue] = useState('');
-    const { showName, name } = useSelector(state => state.profile);
     const dispatch = useDispatch();
+    const { showName, name } = useSelector(selectProfile, shallowEqual);
+    const [value, setValue] = useState('');
 
     const setShowName = () => {
         dispatch(toggleShowName);

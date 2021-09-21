@@ -1,4 +1,4 @@
-import { CHANGE_NAME, TOGGLE_SHOW_NAME } from './actions'
+import { CHANGE_NAME, TOGGLE_SHOW_NAME } from './actions';
 
 const initialState = {
     showName: false,

@@ -1,21 +1,25 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useParams, Link, Redirect } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect, useState, useRef, useMemo } from 'react';
+import { useParams, useHistory, Link, Redirect } from "react-router-dom";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { TextField, Button, List, ListItem, IconButton, ListItemSecondaryAction } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Message from './Message';
 import { addChat, deleteChat } from '../store/chats/actions';
 import { addMessage } from '../store/messages/actions';
+import { selectChats } from '../store/chats/selectors';
+import { selectMessages } from '../store/messages/selectors';
+import { selectProfile } from '../store/profile/selectors';
 
 function Chats() {
     const { chatId } = useParams();
     const inputRef = useRef(null);
     const dispatch = useDispatch();
+    const history = useHistory();
+    const { name } = useSelector(selectProfile, shallowEqual);
+    const chatsList = useSelector(selectChats, shallowEqual);
+    const messagesList = useSelector(selectMessages, shallowEqual);
     const [value, setValue] = useState('');
     const [chatValue, setChatValue] = useState('');
-    const { name } = useSelector(state => state.profile);
-    const chatsList = useSelector(state => state.chats.chatsList);
-    const messagesList = useSelector(state => state.messages.messagesList);
 
     const handleAddMessage = () => {
         if(value) {
@@ -34,6 +38,16 @@ function Chats() {
         handleAddMessage();
     }
 
+    useEffect(() => {
+        let timeout;
+        if(!!chatId && !!messagesList[chatId] && messagesList[chatId][messagesList[chatId].length - 1]?.author === 'Human') {
+            timeout = setTimeout(() => {
+                dispatch(addMessage(chatId, `Author: ${name}`, 'Bot'));
+            }, 1000)
+        }
+        return () => clearTimeout(timeout);
+    }, [messagesList, chatId, name, dispatch]);
+
     const handleAddChat = (name) => {
         dispatch(addChat(name));
         setChatValue('');
@@ -51,25 +65,16 @@ function Chats() {
         e.preventDefault();
         handleAddChat(chatValue);
     }
-    
-    useEffect(() => {
-        let timeout;
-        if(!!chatId && !!messagesList[chatId] && messagesList[chatId][messagesList[chatId].length - 1]?.author === 'Human') {
-            timeout = setTimeout(() => {
-                dispatch(addMessage(chatId, `Author: ${name}`, 'Bot'));
-            }, 1000)
-        }
-        return () => clearTimeout(timeout);
-    }, [messagesList, chatId, name, dispatch]);
 
     useEffect(() => {
-        if(!!messagesList[chatId] ) {
+        if(!!chatId ) {
             inputRef.current.focus();
         }
     }, [messagesList, chatId])
 
-    if(!messagesList[chatId] && !!chatId) {
-        debugger
+    const chatExists = useMemo(() => chatsList.find(({ id }) => id === chatId), [chatId, chatsList]);
+
+    if(chatId && !chatExists) {
         return <Redirect to="/chats" />
     }
 
@@ -86,14 +91,14 @@ function Chats() {
                     <TextField type="text" label="Chat" variant="outlined" value={chatValue} onChange={chatChange} />
                     <Button type="submit" disabled={!chatValue} variant="outlined">Add<br/>chat</Button>
                 </form>}
-                {!!chatId && !!messagesList[chatId] && (
+                {!!chatId && (
                     <>
                     <form className="appMain__form" onSubmit={handleSubmit}>
                         <TextField type="text" fullWidth inputRef={inputRef} autoFocus={true} label="Message" variant="outlined" value={value} onChange={handleChange} />
                         <Button type="submit" variant="outlined">Add message</Button>
                     </form>
                     <div className="appMain__messenges">
-                        {messagesList[chatId].map((message, idx) => <Message key={idx} text={message.text} author={message.author} />)}
+                        {(messagesList[chatId] || []).map((message, idx) => <Message key={idx} text={message.text} author={message.author} />)}
                     </div>
                     </>
                 )}
