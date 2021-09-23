@@ -1,0 +1,24 @@
+
+.profile {
+    padding: 20px;
+    background: #e0e4e040;
+}
+
+.profile__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 27px;
+}
+
+.profile__name span {
+    font-size: 17px;
+    font-weight: 600;
+    
+}
