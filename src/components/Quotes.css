@@ -1,0 +1,46 @@
+.quotes {
+    padding: 20px;
+    background: #e0e4e040;
+    text-align: center;
+}
+
+.quotes h2 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.quotes__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.quotes__text p {
+    width: 600px;
+    min-height: 70px;
+    border-left: 2px solid #3f51b59e;
+    padding-left: 17px;
+    margin-bottom: 30px;
+    position: relative;
+    font-style: italic;
+    font-size: 17px;
+}
+
+.quotes__text span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #6e6e6e85;
+    font-size: 16px;
+}
+
+.quotes__error {
+    text-align: center;
+}
+
+.quotes__error h3 {
+    margin-bottom: 10px;
+    color: red;
+    font-weight: 600;
+}
