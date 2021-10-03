@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { TextField, Button } from '@material-ui/core';
-import { ref, set, onValue } from "firebase/database";
-import { db } from "../services/firebase"
-import { changeName } from "../store/profile/actions";
+import { changeNameFb, initName } from "../store/profile/actions";
 import { selectProfile } from '../store/profile/selectors';
+import { logOut } from "../services/firebase";
 import './Profile.css';
 
-export default function Profile({ onLogout }) {
+export default function Profile() {
     const dispatch = useDispatch();
-    //const { showName, name } = useSelector(selectProfile, shallowEqual);
+    const { name } = useSelector(selectProfile, shallowEqual);
     const [value, setValue] = useState('');
-    const [name, setName] = useState('');
 
     useEffect(() => {
-        const userDbRef = ref(db, 'user');
-        onValue(userDbRef, (snapshot) => {
-            const data = snapshot.val();
-            setName(data?.username || '');
-        });
+        dispatch(initName());
+        // eslint-disable-next-line
     }, []);
-
-    // const setShowName = () => {
-    //     dispatch(toggleShowName);
-    // }
 
     const handleChange = (event) => {
         setValue(event.target.value);
@@ -31,15 +22,21 @@ export default function Profile({ onLogout }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //dispatch(changeName(value));
+        dispatch(changeNameFb(value));
         setValue('');
-        set(ref(db, 'user'), {
-            username: value,
-        });
+    }
+
+    const handleLogout = async () => {
+        try {
+            await logOut();
+        } catch (e) {
+          console.log(e);
+        }
     }
 
     const handleClick = () => {
-        onLogout();
+        const res = window.confirm('Вы точно хотите выйти?');
+        if(res) handleLogout();
     }
 
     return (
@@ -48,9 +45,7 @@ export default function Profile({ onLogout }) {
                 <TextField type="text" label="Name" value={value} onChange={handleChange} />
                 <Button type="submit" disabled={!value} variant="outlined">Change name</Button>
             </form>
-            <div className="profile__name">
-                <p>My name: <span className="name">{name}</span></p>
-            </div>
+            <p className="profile__name">My name: <span className="name">{name}</span></p>
             <Button variant="outlined" onClick={handleClick}>Logout</Button>
         </div>
     )

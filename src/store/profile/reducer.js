@@ -1,7 +1,8 @@
-import { CHANGE_NAME, TOGGLE_SHOW_NAME } from './actions';
+import { SET_NAME, SET_USER, TOGGLE_SHOW_NAME } from './actions';
 
 const initialState = {
     showName: false,
+    authed: false,
     name: 'Default'
 }
 
@@ -13,10 +14,16 @@ export const profileReducer = (state = initialState, action) => {
                 showName: !state.showName,
             }
         }
-        case CHANGE_NAME: {
+        case SET_NAME: {
             return {
                 ...state,
                 name: action.payload,
+            }
+        }
+        case SET_USER: {
+            return {
+                ...state,
+                authed: action.payload,
             }
         }
         default: return state;

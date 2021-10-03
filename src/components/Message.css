@@ -1,9 +1,24 @@
+.messageWrap {
+    position: relative;
+    min-height: 30px;
+    margin-top: 10px;
+}
+
 .messageText {
-    padding-top: 7px;
+    padding: 0 30px;
+    line-height: 30px;
     text-align: center;
+    word-wrap: break-word;
 }
 
 .messageBot {
+    line-height: 30px;
     text-align: center;
     color: #0c43e0bf;
+}
+
+.messageDel {
+    position: absolute;
+    top: 0;
+    right: 0;
 }

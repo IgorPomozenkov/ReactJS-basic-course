@@ -2,6 +2,7 @@
 .profile {
     padding: 20px;
     background: #e0e4e040;
+    text-align: center;
 }
 
 .profile__form {
@@ -11,10 +12,7 @@
 }
 
 .profile__name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+    margin: 20px 0;
     font-size: 17px;
 }
 

@@ -68,7 +68,7 @@
 .appMain__messenger {
   display: flex;
   justify-content: space-around;
-  padding: 10px;
+  padding: 20px;
   background: #e0e4e040;
 }
 
@@ -88,8 +88,9 @@
   flex-basis: 50%;
 }
 
-.appMain__messenges {
+.appMain__messages {
+  width: 500px;
   padding: 10px;
-  margin-top: 40px;
+  margin: 40px auto 0;
   background: #e0e4e040;
 }
