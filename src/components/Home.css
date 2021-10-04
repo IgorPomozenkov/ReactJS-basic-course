@@ -1,0 +1,26 @@
+.homePage h2 {
+    margin-bottom: 30px;
+}
+
+.homePage__nav a {
+    margin-right: 15px;
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    text-decoration: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.homePage__nav a:hover {
+    text-decoration: underline;
+    color: #000000c7;
+}
+
+.homePage__dialog {
+    margin-top: 20px;
+}
+
+.dialogError {
+    margin-top: 15px;
+    color: red;
+}
