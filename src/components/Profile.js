@@ -46,7 +46,7 @@ export default function Profile() {
                 <Button type="submit" disabled={!value} variant="outlined">Change name</Button>
             </form>
             <p className="profile__name">My name: <span className="name">{name}</span></p>
-            <Button variant="outlined" onClick={handleClick}>Logout</Button>
+            <Button variant="outlined" data-testid="button-test" onClick={handleClick}>Logout</Button>
         </div>
     )
 }

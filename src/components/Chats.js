@@ -4,14 +4,14 @@ import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { TextField, Button, List, ListItem, IconButton, ListItemSecondaryAction } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import Message from './Message';
+import { Message } from './Message';
 import { addChatFb, deleteChatFb, initChats } from '../store/chats/actions';
 import { addMessageFb, initMessages } from '../store/messages/actions';
 import { selectChats } from '../store/chats/selectors';
 import { selectMessages } from '../store/messages/selectors';
 import { selectProfile } from '../store/profile/selectors';
 
-function Chats() {
+export default function Chats() {
     //const history = useHistory();
     const { chatId } = useParams();
     const inputRef = useRef(null);
@@ -60,6 +60,7 @@ function Chats() {
     useEffect(() => {
         if(!!chatId && chatExists) {
             inputRef.current.focus();
+            setValue('');
         }
     }, [chatId, chatExists])
 
@@ -87,7 +88,7 @@ function Chats() {
                         <Button type="submit" variant="outlined">Add message</Button>
                     </form>
                     <div className="appMain__messages">
-                        {(Object.values(messagesList[chatId] || {}) || []).map(message => <Message key={message.id} chatId={chatId} id={message.id} text={message.text} author={message.author} />)}
+                        {Object.values(messagesList[chatId] || {}).map(message => <Message key={message.id} chatId={chatId} id={message.id} text={message.text} author={message.author} />)}
                     </div>
                     </>
                 )}
@@ -95,5 +96,3 @@ function Chats() {
         </div>
     );
 }
-
-export default Chats

@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { deleteMessageFb } from '../store/messages/actions';
 import './Message.css';
 
-export default function Message({chatId, id, text, author}) {
+export const Message = React.memo(({chatId, id, text, author}) => {
     const dispatch = useDispatch();
     const [className, setClassName] = useState('messageText');
 
@@ -27,4 +27,4 @@ export default function Message({chatId, id, text, author}) {
             </div>
         </div>
     )
-}
+})
