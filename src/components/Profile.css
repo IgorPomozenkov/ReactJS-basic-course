@@ -1,0 +1,21 @@
+
+.profile {
+    padding: 20px;
+    background: #e0e4e040;
+    text-align: center;
+}
+
+.profile__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile__name {
+    margin: 20px 0;
+    font-size: 17px;
+}
+
+.name {
+    font-weight: 600;
+}
