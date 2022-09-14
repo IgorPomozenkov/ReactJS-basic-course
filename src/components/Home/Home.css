@@ -1,0 +1,21 @@
+.homePage {
+  min-height: 40px;
+  position: relative;
+}
+
+.homePage__text {
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  text-align: center;
+}
+
+.homePage__userName, .moderText {
+  font-weight: 500;
+}
+
+@media (max-width: 667px) {
+  .homePage__text {
+    font-size: 15px;
+  }
+}

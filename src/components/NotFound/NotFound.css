@@ -1,0 +1,11 @@
+.notFoundPage {
+  text-align: center;
+  color: #720000;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 667px) {
+  .notFoundPage {
+    font-size: 15px;
+  }
+}

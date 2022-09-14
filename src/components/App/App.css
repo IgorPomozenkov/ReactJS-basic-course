@@ -1,0 +1,193 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.pageContent {
+  min-height: 40px;
+  padding: 20px 10px;
+  position: relative;
+  background: #ffffff78;
+}
+
+.reqLoading {
+  position: absolute;
+  top: auto;
+  left: 49%;
+}
+
+.reqError {
+  margin-top: 20px;
+  color: #8b0000;
+}
+
+.mainLink {
+  color: #310040;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.mainLink:hover {
+  color: #310040;
+  text-decoration: underline;
+}
+
+.appHeader {
+  background: #282c34;
+  color: white;
+}
+
+.appHeader > .container {
+  min-height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__link {
+  margin-right: 15px;
+  color: aliceblue;
+  font-size: 17px;
+  text-decoration: none;
+  user-select: none;
+}
+
+.nav__link:hover {
+  color: #f0f8ffa8;
+  text-decoration: underline;
+}
+
+.nav__disable {
+  color: aliceblue;
+  font-size: 17px;
+  user-select: none;
+  opacity: 0.4;
+}
+
+.navRight button:hover {
+  background-color: #f0f8ff1c;
+}
+
+.appHeader__heading {
+  min-height: 90px;
+  background-image: radial-gradient(circle at left, #282c34, #f1f3f8);
+}
+
+.menu .MuiPaper-root {
+  top: 55px !important;
+  width: 230px !important;
+  max-width: 230px !important;
+}
+
+.menu__loading {
+  position: absolute;
+  top: 28%;
+  left: 41%;
+}
+
+.menu__userAvatar {
+  width: 50px !important;
+  height: 50px !important;
+  margin-right: 15px;
+}
+
+.menu__userName span {
+  white-space: normal;
+  word-break: break-all;
+}
+
+.menu__hr {
+  margin: 7px 0 !important;
+}
+
+.menu__login {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.heading {
+  padding-top: 25px;
+}
+
+.appMain {
+  flex-grow: 1;
+  padding: 40px 0;
+  background: #f1f3f8;
+}
+
+.appFooter {
+  height: 50px;
+  padding-top: 12px;
+  background: #282c34;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+}
+
+.userBg {
+  background-color: #004815 !important;
+  color: #ffffff;
+}
+
+.userText {
+  color: #004815 !important;
+}
+
+.adminBg {
+  background-color: #b19500 !important;
+  color: #ffffff;
+}
+
+.adminText {
+  color: #b19500 !important;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 10px;
+  }
+
+}
+
+@media (max-width: 667px) {
+  .reqLoading {
+    left: 45%;
+  }
+
+  .nav__link {
+    margin-right: 12px;
+    font-size: 15px;
+  }
+
+  .nav__disable {
+    font-size: 15px;
+  }
+
+  .appHeader__heading {
+    min-height: 80px;
+  }
+
+  .heading {
+    padding-top: 22px;
+    font-size: 23px;
+  }
+}

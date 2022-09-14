@@ -1,0 +1,54 @@
+.profilePage {
+  min-height: 40px;
+  position: relative;
+}
+
+.profile {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.userPhoto {
+  width: 160px;
+  height: 160px;
+}
+
+.userPhoto__avatar {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.userData {
+  width: 350px;
+}
+
+.userData__field {
+  margin-top: 10px !important;
+  margin-bottom: 15px !important;
+}
+
+.userData__btn {
+  margin-top: 20px !important;
+}
+
+@media (max-width: 667px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .userPhoto {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 30px;
+  }
+
+  .userData {
+    width: 100%;
+  }
+
+  .userData__field input {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,25 @@
+.authPage {
+  min-height: 40px;
+  position: relative;
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth__btn button:nth-child(1) {
+  margin-bottom: 20px;
+}
+
+.dialogError {
+  margin-top: 15px;
+  color: red;
+}
